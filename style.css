@@ -286,8 +286,11 @@ a.nvsr_logo {
     display: block;
     margin: 10px 0;
 }
-.page_nav a.level_2 {
+.page_nav a.level_1 {
     padding-left: 10px;
+}
+.page_nav a.level_1.level_2 {
+    padding-left: 20px;
 }
 
 .page_content .page {
@@ -382,6 +385,7 @@ a.nvsr_logo {
 .page_nav a {
     font-weight: bold;
 }
+.page_nav a.level_0,
 .page_content .title.level_0 {
     font-size: 150%;
 }
@@ -391,8 +395,8 @@ a.nvsr_logo {
     font-size: 125%;
 }
 
-.page_nav a.level_1.level_2,
-.page_content .title.level_1.level_2 {
+.page_nav a.level_2,
+.page_content .title.level_2 {
     font-size: 100%;
 }
 

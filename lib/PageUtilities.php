@@ -31,11 +31,14 @@ class PageUtilities {
                 $class = $level;
                 if (is_page($page->ID) || (is_home() && $page->ID == $page_for_posts)) {
                     $class .= ' current_page';
+                } else {
+                    //check to see if current page is a child of top-level page
+                    
                 }
                 echo '<div class="' . $class . '"><div class="membrane">';
                 echo '<a href="' . $permalink . '">' . $title . '</a>';
                 echo '<div class="' . self::$nav_sub_pages_div_class . '">';
-                self::display_nav_bar_subpages($page->ID, $permalink);
+                self::display_nav_bar_subpages($page->ID);
                 echo '</div></div></div>'; //subpages, membrane, level_0
             }
         }
@@ -48,7 +51,7 @@ class PageUtilities {
      * @param string $permalink permalink of the top-level page, minus trailing '/'
      * @param int $indent
      */
-    private static function display_nav_bar_subpages($parent_id, $permalink, $level = 1) {
+    private static function display_nav_bar_subpages($parent_id, $level = 1) {
         $args = array(
             'sort_order' => 'ASC',
             'sort_column' => 'menu_order',
@@ -58,19 +61,19 @@ class PageUtilities {
         $pages = \get_pages($args);
         if (false !== $pages) {
             foreach ($pages as $page) {
-                $sublink = $permalink . '#' . $page->post_name;
+                $permalink = get_permalink($page->ID);
                 $title = htmlspecialchars($page->post_title);
                 $class = self::get_level_class($level);
-                echo '<a href="' . $sublink . '" class="' . $class . '">'
+                echo '<a href="' . $permalink . '" class="' . $class . '">'
                 . $title . '</a>';
-                self::display_nav_bar_subpages($page->ID, $permalink, $level + 1);
+                self::display_nav_bar_subpages($page->ID, $level + 1);
             }
         }
     }
 
     private static function get_level_class($level) {
         $class = array();
-        while ($level > 0) {
+        while ($level >= 0) {
             $class[] = self::$level_class_prefix . $level;
             $level--;
         }
@@ -87,62 +90,94 @@ class PageUtilities {
             $content = apply_filters('the_content', get_the_content());
             echo '<div class="content">' . $content . '</div>';
             //get the subpages
-            $post_id = $post->ID;
-            self::display_subpages($post_id);
+//            $post_id = $post->ID;
+//            self::display_subpages($post_id);
             echo '</div>';
         }
         rewind_posts();
     }
 
-    private static function display_subpages($parent_id, $level = 1) {
-        $args = array(
-            'sort_order' => 'ASC',
-            'sort_column' => 'menu_order',
-            'parent' => $parent_id,
-            'hierarchical' => 0
-        );
-        $pages = \get_pages($args);
-        if (false !== $pages) {
-            foreach ($pages as $page) {
-                $class = self::get_level_class($level);
-                $title = get_the_title($page->ID);
-                $content = apply_filters('the_content', $page->post_content);
-                echo '<div id="' . $page->post_name . '" class="title ' . $class . '">'
-                . $title . '</div>';
-                echo '<div class="content">' . $content . '</div>';
-                self::display_subpages($page->ID, $level + 1);
-            }
-        }
-    }
+//    private static function display_subpages($parent_id, $level = 1) {
+//        $args = array(
+//            'sort_order' => 'ASC',
+//            'sort_column' => 'menu_order',
+//            'parent' => $parent_id,
+//            'hierarchical' => 0
+//        );
+//        $pages = \get_pages($args);
+//        if (false !== $pages) {
+//            foreach ($pages as $page) {
+//                $class = self::get_level_class($level);
+//                $title = get_the_title($page->ID);
+//                $content = apply_filters('the_content', $page->post_content);
+//                echo '<div id="' . $page->post_name . '" class="title ' . $class . '">'
+//                . $title . '</div>';
+//                echo '<div class="content">' . $content . '</div>';
+//                self::display_subpages($page->ID, $level + 1);
+//            }
+//        }
+//    }
 
+    /**
+     * Displays a navigation list for the current pages and its parent
+     * and child pages.
+     * @global type $post
+     */
     public static function display_page_nav() {
         global $post;
+        //get the current page by looking at the loop
+        $page_id = 0;
         if (have_posts()) {
             the_post();
             $page_id = $post->ID;
-            self::display_page_nav_subpages($page_id);
         }
         rewind_posts();
+        //find the top-level parent page ID
+        $ancestors = get_ancestors($page_id, 'page');
+        if (!empty($ancestors)) {
+            $page_id = array_pop($ancestors);
+        }
+        self::display_page_nav_helper($page_id);
     }
 
-    public static function display_page_nav_subpages($parent_id, $level = 1) {
+    /**
+     * 
+     * @param type $parent_id the top-level page ID
+     * @param type $level
+     */
+    private static function display_page_nav_helper($page_id, $level = 0) {
+        //display the link to the current page
+        $page = get_page($page_id);
+        self::display_page_nav_link($page, $level);
+        //recursively run through the child pages
         $args = array(
             'sort_order' => 'ASC',
             'sort_column' => 'menu_order',
-            'parent' => $parent_id,
+            'parent' => $page_id,
             'hierarchical' => 0
         );
         $pages = \get_pages($args);
         if (false !== $pages) {
             foreach ($pages as $page) {
-                $sublink = '#' . $page->post_name;
-                $title = htmlspecialchars($page->post_title);
-                $class = self::get_level_class($level);
-                echo '<a href="' . $sublink . '" class="' . $class . '">'
-                . $title . '</a>';
-                self::display_page_nav_subpages($page->ID, $level + 1);
+                self::display_page_nav_helper($page->ID, $level + 1);
             }
         }
+    }
+
+    /**
+     * Displays the page navigation link for a given page.
+     * @param type $page page object
+     * @param type $level distance from root of page hierarchy
+     */
+    private static function display_page_nav_link($page, $level = 0) {
+        $permalink = get_permalink($page->ID);
+        $title = htmlspecialchars($page->post_title);
+        $class = self::get_level_class($level);
+        if (is_page($page->ID)) {
+            $class .= ' current_page';
+        }
+        echo '<a href="' . $permalink . '" class="' . $class . '">'
+        . $title . '</a>';
     }
 
 }
