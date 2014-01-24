@@ -1,0 +1,540 @@
+/* 
+    Theme Name: NVS Rehab
+    Author: Givecamp Team
+    Version: 2.0
+    Description: Custom theme for NVS Rehab
+*/
+
+/* --------- layout general ----------- */
+.layout {
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+.layout.column {
+    width: 32%;
+}
+.layout.double_column {
+    width: 66%;
+}
+.layout.left_column,
+.layout.middle_column {
+    float: left;
+}
+
+.layout.right_column {
+    float: right;
+}
+
+.layout.middle_column {
+    margin-left: 2%;
+}
+
+body {
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+}
+.heading {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* ----- layout logo ------ */
+a.nvsr_logo {
+    display: block;
+}
+.nvsr_logo .nvsr_logo_image {
+    float: left;
+}
+.nvsr_logo .title,
+.nvsr_logo .content {
+    margin: 10px 0;
+}
+.nvsr_logo_image {
+    height: 75px;
+    margin-right: 10px;
+}
+
+/* ------ layout donate button ------ */
+.nvsr_donate_button {
+    text-align: right;
+    margin: 10px 0;
+}
+
+/* -------- layout nav bar ------- */
+.nav_bar {
+    text-align: center;
+    overflow: visible;
+    margin-top: 25px;
+}
+.nav_bar .line {
+    position: absolute;
+    height: 5px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+.nav_bar .level_0 {
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    vertical-align: top;
+    border-bottom-width: 5px;
+    border-bottom-style: solid;
+}
+.nav_bar .level_0 .membrane {
+    border-bottom: none;
+    border: 1px solid transparent;
+}
+.nav_bar .sub_pages {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    text-align: left;
+    padding-top: 5px;
+    z-index: 100;
+}
+.nav_bar a {
+    display: inline-block;
+    white-space: nowrap;
+    padding: 10px;
+}
+.nav_bar .sub_pages a {
+    display: block;
+}
+.nav_bar a.level_1 {
+    border: 1px solid transparent;
+}
+.nav_bar .level_0:hover, 
+.nav_bar .level_0 .membrane:hover {
+    overflow: visible;
+}
+.nav_bar .level_1.level_2 {
+    text-indent: 10px;
+}
+
+/* -------------- layout slides -------------- */
+.slides {
+    overflow: hidden;
+    margin-top: 25px;
+}
+
+.nvsr_slide,
+.nvsr_slide .slide_image,
+.nvsr_slide .text,
+.nvsr_slide .text_bg
+{
+    position: absolute;
+}
+.nvsr_slide .title,
+.nvsr_slide .content {
+    position: relative;
+    z-index: 5;
+    margin: 10px 0;
+}
+.nvsr_slide{
+    height: 100%;
+    width: 100%;
+    left: 100%;
+    top: 0;
+    display: block;
+    overflow: hidden;
+}
+.nvsr_slide.first{
+    left: 0;
+}
+.slides img {
+    display: block;
+}
+
+.slides img.screen_frame {
+    width: 100%;
+    opacity: 0;
+}
+
+.nvsr_slide .text_bg {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+.nvsr_slide .text {
+    width: 300px;
+    right: 10%;
+    bottom: 10%;
+    max-height: 80%;
+    padding: 20px;
+    overflow: hidden;
+    text-align: center;
+}
+
+
+
+/* ------ layout tri-panels --------- */
+.tri_panels {
+    margin-top: 25px;
+}
+.nvsr_tri_panel {
+    display: block;
+    overflow: hidden;
+    margin-top: 10px;
+}
+.nvsr_tri_panel .container {
+    position: relative;
+    overflow: hidden;
+}
+.nvsr_tri_panel .frame.title,
+.nvsr_tri_panel .frame.content,
+.nvsr_tri_panel .display.title,
+.nvsr_tri_panel .display.content {
+    padding: 20px;
+}
+.nvsr_tri_panel .frame.title,
+.nvsr_tri_panel .display.title {
+    text-align: center;
+}
+.nvsr_tri_panel .frame {
+    opacity: 0;
+    z-index: -10;
+}
+.nvsr_tri_panel .frame.image {
+    width: 100%;
+}
+.nvsr_tri_panel .display {
+    position: absolute;
+}
+.nvsr_tri_panel .image {
+    display: block;
+}
+.nvsr_tri_panel .display.title,
+.nvsr_tri_panel .display.content {
+    left: 0;
+    top: 0;
+    right: 0;
+}
+
+/* ---- layout news links accreditations ----- */
+.news_links_accreditations {
+    margin-top: 25px;
+}
+
+/* -------  layout front-page-news -------- */
+
+.nvsr_front_page_news .post,
+.nvsr_front_page_news .title ,
+.nvsr_front_page_news .content {
+    margin: 10px 0;
+}
+.nvsr_front_page_news .featured_image {
+    height: 75px;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+.nvsr_front_page_news .read_more {
+    text-align: right;
+    margin: 10px 0;
+}
+/* ---------- layout links ------ */
+.nvsr_links {
+    text-align: center;
+}
+.nvsr_links li {
+    list-style: none;
+}
+.nvsr_links ul {
+    margin: 0;
+    padding: 0;
+}
+.nvsr_links .linkcat {
+    margin: 10px 0;
+}
+
+/*------ layout accreditation ---- */
+
+.nvsr_accreditation img {
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+}
+.nvsr_accreditation {
+    margin: 10px 0;
+}
+
+/* ------------- layout footers ---------- */
+.footer{
+    margin-top: 50px;
+}
+.nvsr_footer {
+    margin: 10px 0;
+    text-align: center;
+}
+
+.nvsr_footer p {
+    margin: 0;
+}
+/* ----- layout pages ------ */
+.page_nav,
+.page_content {
+    margin-top: 25px;
+}
+
+.page_nav a {
+    display: block;
+    margin: 10px 0;
+}
+.page_nav a.level_2 {
+    padding-left: 10px;
+}
+
+.page_content .page {
+    margin: 10px 0;
+}
+.page_content .page img {
+    max-width: 100%;
+}
+
+/* ------ layout blog entries ------ */
+.blog_content,
+.blog_nav {
+    margin-top: 25px;
+}
+.blog_nav a {
+    margin: 10px 0;
+    display: block;
+}
+.blog_content .post {
+    margin: 10px 0;
+}
+.blog_content .post img {
+    max-width: 100%;
+}
+.blog_nav .heading {
+    margin: 10px 0;
+}
+
+/* ------------------------------ */
+/* ----------- sizing ---------- */
+/* ------------------------------ */
+.heading {
+    font-variant: small-caps;
+    font-size: 150%;
+    border-bottom-width: 5px;
+    border-bottom-style: solid;
+    font-weight: bold;
+}
+
+/*-------  sizing logo --------- */
+.nvsr_logo .title {
+    font-weight: bold;
+    font-size: 200%;
+}
+
+/* ----- sizing nav bar ------ */
+.nav_bar {
+    font-variant: small-caps;
+}
+.nav_bar .level_0 {
+    font-size: 150%;
+}
+.nav_bar .level_1 {
+    font-size: 75%;
+}
+
+/* ---------- sizing  slides -----------*/
+.nvsr_slide .title {
+    font-size: 150%;
+    font-weight: bold;
+    font-variant: small-caps;
+}
+/* --------- sizing  tri_panels ------ */
+.nvsr_tri_panel .title{
+    font-size: 150%;
+    font-weight: bold;
+    font-variant: small-caps;
+}
+
+/* ------- sizing news links accreditations ---- */
+
+/* --------- sizing  front-page news ---------- */
+.nvsr_front_page_news .title {
+    font-weight: bold;
+    font-size: 125%;
+}
+
+/* ----- sizing  links ----- */
+.nvsr_links .title {
+    font-size: 125%;
+    font-weight: bold;
+}
+
+/* ---------  sizing footer ------- */
+.nvsr_footer .title {
+    font-weight: bold;
+    font-variant: small-caps;
+}
+
+/* ------  sizing pages ----- */
+.page_content .title,
+.page_nav a {
+    font-weight: bold;
+}
+.page_content .title.level_0 {
+    font-size: 150%;
+}
+
+.page_nav a.level_1,
+.page_content .title.level_1 {
+    font-size: 125%;
+}
+
+.page_nav a.level_1.level_2,
+.page_content .title.level_1.level_2 {
+    font-size: 100%;
+}
+
+
+/* ------  sizing blog entries ----- */
+.blog_content .title {
+    font-weight: bold;
+    font-size: 125%;
+}
+.blog_nav .heading {
+    font-weight: normal;
+}
+
+/* ------------------------------ */
+/* ----------- border-radius ---------- */
+/* ------------------------------ */
+
+/* ----------- border-radius  nav_bar ------------------- */
+
+.nav_bar .level_0 .membrane {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+/* ------------ border-radius  slides ------------------ */
+.nvsr_slide,
+.nvsr_slide .text_bg {
+    border-radius: 10px;
+}
+/* ----------- border-radius  tri-panels ------------------- */
+.nvsr_tri_panel {
+    border-radius: 10px;
+}
+
+
+/* ------------------------------ */
+/* ----------- colors ---------- */
+/* ------------------------------ */
+
+html
+{
+background: -webkit-linear-gradient(lightcyan, lemonchiffon); /* For Safari */
+background: -o-linear-gradient(lightcyan, lemonchiffon); /* For Opera 11.1 to 12.0 */
+background: -moz-linear-gradient(lightcyan, lemonchiffon); /* For Firefox 3.6 to 15 */
+background: linear-gradient(lightcyan, lemonchiffon); /* Standard syntax */
+} 
+
+
+a {
+    text-decoration: none;
+}
+
+a, a:visited, a:hover, a:active {
+    color: black;
+}
+
+.title {
+    color: saddlebrown;
+}
+.heading {
+    color: saddlebrown;
+    border-bottom-color: khaki;
+}
+/* ----  colors nav bar ----- */
+.nav_bar .level_0 .membrane:hover {
+    border-color: khaki;
+    background-color: khaki;
+}
+.nav_bar .level_0:hover,
+.nav_bar .level_0.current_page {
+    border-bottom-color: saddlebrown;
+}
+.nav_bar a.level_1:hover {
+    background-color: tan;
+    border-color: tan;
+}
+.nav_bar a.level_1 {
+    background-color: khaki;
+}
+.nav_bar .level_0 {
+    border-bottom-color: silver;
+}
+.nav_bar .line {
+    background-color: silver;
+}
+.nav_bar a, .nav_bar a:visited, .nav_bar a:hover, .nav_bar a:active {
+    color: saddlebrown;
+}
+
+/* ----  colors slides ---- */
+.nvsr_slide .text_bg {
+    background-color: khaki;
+    opacity: .8;
+}
+/*
+.nvsr_slide .title {
+    color: saddlebrown;
+}
+*/
+/* -------  colors tri panels ------ */
+.nvsr_tri_panel {
+    background-color: khaki;
+}
+/*.nvsr_tri_panel .title {
+    color: saddlebrown;
+}
+*/
+/* ----- colors news_links_accreditations ---- */
+
+.news_links_accreditations a,
+.news_links_accreditations a:visited {
+    color: sienna;
+}
+.news_links_accreditations a:hover,
+.news_links_accreditations a:active {
+    color: maroon;
+}
+
+/* ------ colors footer -------- */
+/*
+.nvsr_footer .title {
+    color: saddlebrown;
+}
+*/
+/* ----- colors pages ------- */
+.page_nav a,
+.page_nav a:visited {
+    color: sienna;
+}
+.page_nav a:hover,
+.page_nav a:active {
+    color: maroon;
+}
+/* ----- colors blog nav ------- */
+.blog_nav a,
+.blog_nav a:visited {
+    color: sienna;
+}
+.blog_nav a:hover,
+.blog_nav a:active {
+    color: maroon;
+}
+.blog_nav .heading {
+    border-color: silver;
+    display: inline-block;
+}
